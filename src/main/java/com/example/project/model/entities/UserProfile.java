@@ -20,8 +20,6 @@ public class UserProfile {
 
     private String email;
 
-
-
     @Embedded
     private Phone phone;
 

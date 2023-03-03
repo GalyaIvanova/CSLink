@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserAssembler {
-@Autowired
-private UserProfileService userProfileService;
+
     public UserDTO toDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername(user.getUsername());

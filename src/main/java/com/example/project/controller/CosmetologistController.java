@@ -48,7 +48,7 @@ public class CosmetologistController {
         Optional<Cosmetologist> optionalCosmetologist = cosmetologistRepository.findById(id);
         if (optionalCosmetologist.isPresent()) {
             Cosmetologist cosmetologist = optionalCosmetologist.get();
-            cosmetologist.setName(cosmetologistDetails.getName());
+            //cosmetologist.setName(cosmetologistDetails.getName());
             Cosmetologist updatedCosmetologist = cosmetologistRepository.save(cosmetologist);
             return ResponseEntity.ok(updatedCosmetologist);
         } else {

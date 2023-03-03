@@ -18,8 +18,8 @@ public class User {
 
     @NonNull
     private String username;
-    @NonNull
     private String password;
+    private String tokent;
 
 //    @JsonIgnore
 //    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)

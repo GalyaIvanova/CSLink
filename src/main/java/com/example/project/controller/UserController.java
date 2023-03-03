@@ -19,8 +19,10 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserProfileService userProfileService;
+//    @Autowired
+//    private UserProfileAssembler userProfileAssembler;
     @Autowired
-    private UserProfileAssembler userProfileAssembler;
+    private UserAssembler userAssembler;
 
     @PostMapping
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
@@ -31,7 +33,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
-        UserDTO user=userService.getUserById(id);
+        UserDTO user=userAssembler.toDTO(userService.getUserById(id));
         return ResponseEntity.ok(user);
     }
 
@@ -54,13 +56,13 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{userId}/profile")
-    public ResponseEntity<UserProfileDTO> createUserProfile(@PathVariable Long userId,
-                                                            @RequestBody UserProfileDTO createUserProfileDTO) {
-        UserProfileDTO userProfile=userProfileService.createUserProfile(userProfileAssembler.toEntity(createUserProfileDTO));
-        return ResponseEntity.ok(userProfile);
-//        return ResponseEntity.created(userProfile.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(userProfileDTO);
-    }
+//    @PostMapping("/{userId}/profile")
+//    public ResponseEntity<UserProfileDTO> createUserProfile(@PathVariable Long userId,
+//                                                            @RequestBody UserProfileDTO createUserProfileDTO) {
+//        UserProfileDTO userProfile=userProfileService.createUserProfile(userProfileAssembler.toEntity(createUserProfileDTO));
+//        return ResponseEntity.ok(userProfile);
+////        return ResponseEntity.created(userProfile.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(userProfileDTO);
+//    }
 
     //TODO
 //    @GetMapping("/{userId}/profile")

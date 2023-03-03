@@ -6,20 +6,17 @@ import java.util.List;
 
 public class CosmetologistDTO {
     private Long id;
-    private String name;
-    private String email;
-    private String phone;
+    private Long userProfileId;
     private List<Long> procedureIds;
     private WorkingHours availability;
 
     public CosmetologistDTO() {}
 
-    public CosmetologistDTO(Long id, String name, String email, String phone, List<Long> procedureIds) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.procedureIds = procedureIds;
+    public CosmetologistDTO(Long id, Long userProfileId, List<Long> procedureIds, WorkingHours availability) {
+        this.id=id;
+        this.userProfileId=userProfileId;
+        this.procedureIds=procedureIds;
+        this.availability=availability;
     }
 
     public Long getId() {
@@ -27,23 +24,15 @@ public class CosmetologistDTO {
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id=id;
     }
 
-    public String getName() {
-        return name;
+    public Long getUserProfileId() {
+        return userProfileId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserProfileId(Long userProfileId) {
+        this.userProfileId=userProfileId;
     }
 
     public List<Long> getProcedureIds() {
@@ -51,23 +40,7 @@ public class CosmetologistDTO {
     }
 
     public void setProcedureIds(List<Long> procedureIds) {
-        this.procedureIds = procedureIds;
-    }
-
-    public String getPhoneNumber() {
-        return phone;
-    }
-
-    public void setPhoneNumber(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone=phone;
+        this.procedureIds=procedureIds;
     }
 
     public WorkingHours getAvailability() {

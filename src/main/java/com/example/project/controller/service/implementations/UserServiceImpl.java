@@ -43,13 +43,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUserById(Long id) {
+    public User getUserById(Long id) {
         // Find user by id
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new CustomResourceNotFoundException("User not found with id: " + id));
 
         // Convert user to DTO and return
-        return userAssembler.toDTO(user);
+        return user;
     }
 
     @Override

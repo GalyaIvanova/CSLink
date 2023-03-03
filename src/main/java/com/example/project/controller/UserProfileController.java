@@ -26,7 +26,7 @@ public class UserProfileController {
         return ResponseEntity.ok().body(userProfileDTO);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<UserProfileDTO> createUserProfile(@RequestBody UserProfileDTO userProfileDTO) {
         UserProfile userProfile=userProfileAssembler.toEntity(userProfileDTO);
         UserProfileDTO savedUserProfile=userProfileService.createUserProfile(userProfile);

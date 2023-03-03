@@ -15,8 +15,6 @@ public class Cosmetologist {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
     @JsonIgnore
     private String IBAN;
 
@@ -96,14 +94,6 @@ public class Cosmetologist {
 
     public void setTransactions(List<Transaction> transactions) {
         this.transactions=transactions;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name=name;
     }
 
     public String getPhoneNumber() {
