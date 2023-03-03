@@ -1,6 +1,7 @@
 package com.example.project.controller.service.implementations;
 
 import com.example.project.controller.service.CosmetologistService;
+import com.example.project.controller.service.ProcedureService;
 import com.example.project.model.data.exceptions.CustomBadRequestException;
 import com.example.project.model.data.exceptions.CustomResourceNotFoundException;
 import com.example.project.model.dao.ClientRepository;
@@ -44,8 +45,8 @@ public class CosmetologistServiceImpl implements CosmetologistService {
     @Autowired
     private ClientAssembler clientAssembler;
 
-    @Autowired
-    private ProcedureAssembler procedureAssembler;
+//    @Autowired
+//    private ProcedureAssembler procedureAssembler;
 
 
 //    @Autowired
@@ -145,15 +146,12 @@ public class CosmetologistServiceImpl implements CosmetologistService {
         return cosmetologistRepository.save(cosmetologist);
     }
 
-
+    //todo
     @Override
     public List<ProcedureDTO> getProceduresForCosmetologist(Long cosmetologistId) {
         Cosmetologist cosmetologist=cosmetologistRepository.findById(cosmetologistId)
                 .orElseThrow(() -> new CustomResourceNotFoundException("Cosmetologist", cosmetologistId));
-        List<Procedure> procedures=procedureRepository.findByCosmetologists(cosmetologist);
-        return procedures.stream()
-                .map(procedureAssembler::toProcedureDTO)
-                .collect(Collectors.toList());
+        return procedureRepository.findByCosmetologists(cosmetologist);
     }
 
     @Override

@@ -1,14 +1,14 @@
 package com.example.project.model.dto;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class ProcedureDTO {
     private Long id;
+    private Long cosmetologistId;
     private String name;
     private String description;
     private BigDecimal price;
-    private List<String> tags;
+    //private Set<String> tags;
 
 
     public Long getId() {
@@ -43,12 +43,20 @@ public class ProcedureDTO {
         this.price=price;
     }
 
-    public List<String> getTags() {
-        return tags;
+//    public List<String> getTags() {
+//        return tags;
+//    }
+//
+//    public void setTags(List<String> tags) {
+//        this.tags=tags;
+//    }
+
+    public Long getCosmetologistId() {
+        return cosmetologistId;
     }
 
-    public void setTags(List<String> tags) {
-        this.tags=tags;
+    public void setCosmetologistId(Long cosmetologistId) {
+        this.cosmetologistId=cosmetologistId;
     }
 }
 

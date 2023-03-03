@@ -12,17 +12,19 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 @Component
 public class CosmetologistAssembler {
-@Autowired
-private UserProfileService userProfileService;
+    @Autowired
+    private UserProfileService userProfileService;
+
     public CosmetologistDTO toCosmetologistDTO(Cosmetologist cosmetologist) {
-        CosmetologistDTO dto = new CosmetologistDTO();
+        CosmetologistDTO dto=new CosmetologistDTO();
         dto.setId(cosmetologist.getId());
         dto.setUserProfileId(cosmetologist.getUserProfile().getId());
 //        dto.setSpecialty(cosmetologist.getSpecialty());
 //        dto.setYearsOfExperience(cosmetologist.getYearsOfExperience());
-        List<Long> procedureIds = cosmetologist.getProcedures().stream()
+        List<Long> procedureIds=cosmetologist.getProcedures().stream()
                 .map(Procedure::getId)
                 .collect(Collectors.toList());
         dto.setProcedureIds(procedureIds);
@@ -31,15 +33,15 @@ private UserProfileService userProfileService;
     }
 
     public Cosmetologist toCosmetologistEntity(CosmetologistDTO dto) {
-        Cosmetologist cosmetologist = new Cosmetologist();
+        Cosmetologist cosmetologist=new Cosmetologist();
         cosmetologist.setId(cosmetologist.getId());
         cosmetologist.setUserProfile(userProfileService.getUserProfileById(dto.getUserProfileId()));
 //        cosmetologist.setSpecialty(dto.getSpecialty());
 //        cosmetologist.setYearsOfExperience(dto.getYearsOfExperience());
-        List<Procedure> procedures = new ArrayList<>();
-        if(dto.getProcedureIds() != null) {
-            for(Long procedureId : dto.getProcedureIds()) {
-                Procedure procedure = new Procedure();
+        List<Procedure> procedures=new ArrayList<>();
+        if (dto.getProcedureIds() != null) {
+            for (Long procedureId : dto.getProcedureIds()) {
+                Procedure procedure=new Procedure();
                 procedure.setId(procedureId);
                 procedures.add(procedure);
             }

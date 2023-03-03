@@ -16,7 +16,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    //private String name;
 
     @JsonIgnore
     @Embedded
@@ -44,23 +44,23 @@ public class Client {
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id=id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public UserProfile getUserProfile() {
         return userProfile;
     }
 
     public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+        this.userProfile=userProfile;
     }
 
     public List<Transaction> getTransactions() {

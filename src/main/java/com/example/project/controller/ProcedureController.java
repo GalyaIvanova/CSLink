@@ -37,7 +37,7 @@ public class ProcedureController {
         return ResponseEntity.ok(procedures);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<ProcedureDTO> createProcedure(@RequestBody ProcedureDTO procedureDTO) {
         ProcedureDTO createdProcedureDTO = procedureService.createProcedure(procedureDTO);
         return ResponseEntity.ok(createdProcedureDTO);
