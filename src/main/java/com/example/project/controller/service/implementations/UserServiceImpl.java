@@ -1,27 +1,28 @@
 package com.example.project.controller.service.implementations;
 
 import com.example.project.controller.service.UserService;
+import com.example.project.model.dao.UserRepository;
 import com.example.project.model.data.exceptions.CustomBadRequestException;
 import com.example.project.model.data.exceptions.CustomResourceNotFoundException;
 import com.example.project.model.dto.UserDTO;
 import com.example.project.model.entities.User;
 import com.example.project.model.mappers.UserAssembler;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-    private final UserAssembler userAssembler;
-    private final PasswordEncoder passwordEncoder;
-
-    public UserServiceImpl(UserRepository userRepository, UserAssembler userAssembler, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.userAssembler = userAssembler;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+    @Autowired
+    private  UserRepository userRepository;
+    @Autowired
+    private  UserAssembler userAssembler;
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
@@ -76,6 +77,17 @@ public class UserServiceImpl implements UserService {
 
         // Delete user
         userRepository.delete(user);
+    }
+
+    @Override
+    public boolean isValid(UserDTO userDTO) {
+        User user = userRepository.findByUsername(userDTO.getUsername());
+
+        if (user == null) {
+            return false;
+        }
+
+        return user.getPassword().equals(passwordEncoder.encode(userDTO.getPassword()));
     }
 }
 

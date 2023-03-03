@@ -2,6 +2,7 @@ package com.example.project.model.entities;
 
 import com.example.project.model.data.ds.Address;
 import com.example.project.model.data.ds.Phone;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class Client {
 
     private String name;
 
+    @JsonIgnore
     @Embedded
     private Address address;
 
@@ -24,6 +26,7 @@ public class Client {
     @JoinColumn(name = "userProfile_id", referencedColumnName = "id")
     private UserProfile userProfile;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "client_cosmetologist",
@@ -32,7 +35,7 @@ public class Client {
     )
     private List<Cosmetologist> cosmetologists = new ArrayList<>();
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
 

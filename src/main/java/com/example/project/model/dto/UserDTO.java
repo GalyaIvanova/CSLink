@@ -1,9 +1,13 @@
 package com.example.project.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class UserDTO {
+    @JsonIgnore
     private Long id;
     private String username;
     private String password;
+    @JsonIgnore
     private Long  userProfileId;
 
     public UserDTO() {

@@ -1,8 +1,6 @@
-package com.example.project.model.dao.tm;
+package com.example.project.model.dao.tablespaces;
 
 import com.example.project.model.entities.Client;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
 
