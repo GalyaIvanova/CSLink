@@ -1,12 +1,15 @@
-package com.example.project.model.entities;
+package com.example.project.model.data.ds;
 
 import jakarta.persistence.Embeddable;
+import org.springframework.lang.NonNull;
 
 @Embeddable
 public class Phone {
 
     private String countryCode;
     private String areaCode;
+
+    @NonNull
     private String number;
 
     public String getCountryCode() {
@@ -32,6 +35,4 @@ public class Phone {
     public void setNumber(String number) {
         this.number = number;
     }
-
-    // getters and setters
 }

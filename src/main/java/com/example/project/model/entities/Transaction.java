@@ -71,6 +71,4 @@ public class Transaction {
     public void setDatetime(LocalDateTime datetime) {
         this.datetime = datetime;
     }
-
-    // getters and setters
 }

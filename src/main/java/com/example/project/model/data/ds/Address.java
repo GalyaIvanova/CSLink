@@ -1,4 +1,4 @@
-package com.example.project.model.entities;
+package com.example.project.model.data.ds;
 
 import jakarta.persistence.Embeddable;
 
@@ -42,5 +42,8 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    // getters and setters
+    @Override
+    public String toString() {
+        return street+", " + city +", " + state + ", " + zipCode ;
+    }
 }

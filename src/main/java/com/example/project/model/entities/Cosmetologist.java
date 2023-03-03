@@ -1,10 +1,10 @@
 package com.example.project.model.entities;
 
 
+import com.example.project.model.data.ds.WorkingHours;
 import jakarta.persistence.*;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "cosmetologist")
@@ -18,18 +18,21 @@ public class Cosmetologist {
 
     private String IBAN;
 
+    @Embedded
+    private WorkingHours availability;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userProfile_id", referencedColumnName = "id")
     private UserProfile userProfile;
 
-    @OneToMany(mappedBy = "cosmetologist", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cosmetologists", cascade = CascadeType.ALL)
     private List<Procedure> procedures;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "cosmetologist_client",
             joinColumns = @JoinColumn(name = "cosmetologist_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id"))
-    private Set<Client> clients;
+    private List<Client> clients;
 
     @OneToMany(mappedBy = "cosmetologist", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
@@ -40,14 +43,6 @@ public class Cosmetologist {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getIBAN() {
@@ -74,12 +69,18 @@ public class Cosmetologist {
         this.procedures = procedures;
     }
 
-    public Set<Client> getClients() {
+    public List<Client> getClients() {
         return clients;
     }
 
-    public void setClients(Set<Client> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
+    }
+    public void addClient(Client client) {
+        this.clients.add(client);
+    }
+    public void removeClient(Long clientId) {
+        this.clients.removeIf(c-> Objects.equals(clientId, c.getId()));
     }
 
     public List<Transaction> getTransactions() {
@@ -90,5 +91,32 @@ public class Cosmetologist {
         this.transactions = transactions;
     }
 
-    // getters and setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getPhoneNumber(){
+        return this.userProfile.getPhone().getNumber();
+    }
+    public void setPhoneNumber(String phoneNumber){
+        this.userProfile.getPhone().setNumber(phoneNumber);
+    }
+
+    public void addProcedure(Procedure procedure) {
+        this.procedures.add(procedure);
+    }
+    public void removeProcedure(Long procedureId) {
+        this.procedures.removeIf(p-> Objects.equals(p.getId(), procedureId));
+    }
+
+    public WorkingHours getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(WorkingHours availability) {
+        this.availability=availability;
+    }
 }

@@ -1,27 +1,15 @@
-package com.example.project.model.entities;
-
-import jakarta.persistence.*;
+package com.example.project.model.dto;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
-@Entity
-@Table(name="procedure")
-public class Procedure {
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+public class ProcedureDTO {
     private Long id;
-
     private String name;
-
     private String description;
-
     private BigDecimal price;
+    private List<String> tags;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cosmetologist_id")
-    private Cosmetologist cosmetologists;
 
     public Long getId() {
         return id;
@@ -39,14 +27,6 @@ public class Procedure {
         this.name=name;
     }
 
-    public Cosmetologist getCosmetologist() {
-        return cosmetologists;
-    }
-
-    public void setCosmetologist(Cosmetologist cosmetologist) {
-        this.cosmetologists=cosmetologist;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -62,4 +42,13 @@ public class Procedure {
     public void setPrice(BigDecimal price) {
         this.price=price;
     }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags=tags;
+    }
 }
+

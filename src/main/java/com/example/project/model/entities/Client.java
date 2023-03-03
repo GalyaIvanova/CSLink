@@ -1,9 +1,11 @@
 package com.example.project.model.entities;
 
+import com.example.project.model.data.ds.Address;
+import com.example.project.model.data.ds.Phone;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "client")
@@ -15,12 +17,21 @@ public class Client {
 
     private String name;
 
+    @Embedded
+    private Address address;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userProfile_id", referencedColumnName = "id")
     private UserProfile userProfile;
 
-    @ManyToMany(mappedBy = "clients")
-    private Set<Cosmetologist> cosmetologists;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "client_cosmetologist",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "cosmetologist_id")
+    )
+    private List<Cosmetologist> cosmetologists = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
@@ -49,14 +60,6 @@ public class Client {
         this.userProfile = userProfile;
     }
 
-    public Set<Cosmetologist> getCosmetologists() {
-        return cosmetologists;
-    }
-
-    public void setCosmetologists(Set<Cosmetologist> cosmetologists) {
-        this.cosmetologists = cosmetologists;
-    }
-
     public List<Transaction> getTransactions() {
         return transactions;
     }
@@ -65,6 +68,31 @@ public class Client {
         this.transactions = transactions;
     }
 
+    public List<Cosmetologist> getCosmetologists() {
+        return cosmetologists;
+    }
 
-    // getters and setters
+    public void setCosmetologists(List<Cosmetologist> cosmetologists) {
+        this.cosmetologists = cosmetologists;
+    }
+
+    public void addCosmetologist(Cosmetologist cosmetologist) {
+        this.cosmetologists.add(cosmetologist);
+    }
+
+    public void removeCosmetologist(Cosmetologist cosmetologist) {
+        this.cosmetologists.remove(cosmetologist);
+    }
+
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Phone getPhone() {
+        return this.userProfile.getPhone();
+    }
 }

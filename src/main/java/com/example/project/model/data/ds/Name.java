@@ -1,11 +1,13 @@
-package com.example.project.model.entities;
+package com.example.project.model.data.ds;
 
 import jakarta.persistence.Embeddable;
+import org.springframework.lang.NonNull;
 
 @Embeddable
 public class Name {
-
+    @NonNull
     private String firstName;
+    @NonNull
     private String lastName;
 
     public String getFirstName() {
