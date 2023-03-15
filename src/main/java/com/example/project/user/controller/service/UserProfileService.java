@@ -1,13 +1,14 @@
 package com.example.project.user.controller.service;
 
-import com.example.project.user.model.dto.UserProfileDTO;
-
 import java.util.List;
+
+import com.example.project.user.model.dto.UserProfileDTO;
 
 public interface UserProfileService {
 
     UserProfileDTO getUserProfileById(Long id);
-    UserProfileDTO validateUserProfileById(Long id);
+
+    UserProfileDTO validateUserProfile(UserProfileDTO userProfileDTO);
 
     UserProfileDTO createUserProfile(UserProfileDTO userProfile);
 

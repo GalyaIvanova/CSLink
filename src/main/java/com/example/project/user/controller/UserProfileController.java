@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.project.user.controller.service.UserProfileService;
-import com.example.project.user.model.dataccess.persistence.UserProfilePersistence;
 import com.example.project.user.model.dto.UserProfileDTO;
 
 @RestController
@@ -22,8 +21,6 @@ import com.example.project.user.model.dto.UserProfileDTO;
 public class UserProfileController {
     @Autowired
     private UserProfileService userProfileService;
-
-
 
     @GetMapping("/{id}")
     public ResponseEntity<UserProfileDTO> getUserProfileById(@PathVariable Long id) {
@@ -34,7 +31,7 @@ public class UserProfileController {
     @PostMapping("/login")
     public ResponseEntity<UserProfileDTO> loginUser(@RequestBody UserProfileDTO userProfileDTO) {
         //TODO JWT
-        return ResponseEntity.ok().body(userProfileService.validateUserProfileById(userProfileDTO.getId()));
+        return ResponseEntity.ok().body(userProfileService.validateUserProfile(userProfileDTO));
     }
 
     @PostMapping("/create")

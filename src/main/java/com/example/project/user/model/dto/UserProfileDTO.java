@@ -1,7 +1,7 @@
 package com.example.project.user.model.dto;
 
-import com.example.project.user.model.entity.Phone;
 import com.example.project.user.model.datatypes.enums.Role;
+import com.example.project.user.model.entity.Phone;
 
 public class UserProfileDTO {
     private Long id;
@@ -9,6 +9,9 @@ public class UserProfileDTO {
     private String name;
     private String email;
     private Phone phone;
+
+    private String password;
+    private String token;
 
     public UserProfileDTO() {
     }
@@ -51,5 +54,21 @@ public class UserProfileDTO {
 
     public void setPhone(Phone phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

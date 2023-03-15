@@ -3,6 +3,7 @@ package com.example.project.user.controller.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.project.exceptions.CustomResourceNotFoundException;
@@ -24,6 +25,9 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Autowired
     private UserProfilePersistence UserProfilePersistence;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     //    @Override
     //    public UserProfileDTO createUserProfile(UserProfile userProfile) {
@@ -56,14 +60,20 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
-    public UserProfileDTO validateUserProfileById(Long id) {
-        return userProfileMapper.toDtoModel(UserProfilePersistence.getExistingUser(id));
+    public UserProfileDTO validateUserProfile(UserProfileDTO userProfile) {
+        return userProfileMapper.toDtoModel(UserProfilePersistence.getExistingUser(userProfileMapper.toEntity(userProfile)));
     }
 
     @Override
     public UserProfileDTO createUserProfile(UserProfileDTO userProfile) {
 
-        return userProfileMapper.toDtoModel(userProfileRepository.save(userProfileMapper.toEntity(userProfile)));
+        UserProfile entity = userProfileMapper.toEntity(userProfile);
+        entity.setPassword(getEncodedPassword(entity.getPassword()));
+        return userProfileMapper.toDtoModel(userProfileRepository.save(entity));
+    }
+
+    public String getEncodedPassword(String password) {
+        return passwordEncoder.encode(password);
     }
 
     @Override
