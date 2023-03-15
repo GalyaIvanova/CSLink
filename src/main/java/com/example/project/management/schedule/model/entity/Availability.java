@@ -4,10 +4,18 @@ import java.time.LocalDateTime;
 
 import org.springframework.scheduling.annotation.Scheduled;
 
+import com.example.project.cosmetologist.model.entity.Cosmetologist;
 import com.example.project.management.schedule.model.ds.WorkingHours;
-import com.example.project._recactor.model.entities.Cosmetologist;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"workingHours"}))

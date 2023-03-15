@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.project._recactor.model.data.exceptions.CustomResourceNotFoundException;
-import com.example.project.user.controller.mapper.UserProfileMapper;
+import com.example.project.exceptions.CustomResourceNotFoundException;
+import com.example.project.user.controller.mappers.UserProfileMapper;
 import com.example.project.user.controller.service.UserProfileService;
 import com.example.project.user.model.dataccess.dao.UserProfileDao;
 import com.example.project.user.model.dataccess.persistence.UserProfilePersistence;

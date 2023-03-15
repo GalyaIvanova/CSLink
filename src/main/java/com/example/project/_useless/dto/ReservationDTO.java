@@ -1,7 +1,7 @@
 package com.example.project._useless.dto;
 
 import com.example.project.management.reservation.model.datatypes.ds.AppointmentTime;
-import com.example.project._recactor.model.entities.Procedure;
+import com.example.project.procedure.model.Procedure;
 
 public class ReservationDTO {
         private Long id;
