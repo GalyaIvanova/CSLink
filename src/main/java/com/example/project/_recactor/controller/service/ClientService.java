@@ -19,15 +19,4 @@ public interface ClientService {
 
     Client saveClient(Client client);
 
-    List<Cosmetologist> getCosmetologists(Long clientId) throws CustomResourceNotFoundException;
-
-    void addCosmetologist(Long clientId, Long cosmetologistId) throws CustomResourceNotFoundException;
-
-    void removeCosmetologist(Long clientId, Long cosmetologistId) throws CustomResourceNotFoundException;
-
-    void removeCosmetologistFromClient(Long clientId, Long cosmetologistId);
-
-    void addCosmetologistToClient(Long clientId, Long cosmetologistId);
-
-    List<Cosmetologist> getCosmetologistsForClient(Long clientId);
 }

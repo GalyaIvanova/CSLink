@@ -77,59 +77,11 @@ public class ClientServiceImpl implements ClientService {
         }
     }
 
-    @Override
-    public List<Cosmetologist> getCosmetologists(Long clientId) throws CustomResourceNotFoundException {
-        Client client = getClientById(clientId);
-        return client.getCosmetologists();
-    }
 
-    @Override
-    public void addCosmetologist(Long clientId, Long cosmetologistId) throws CustomResourceNotFoundException {
-        Client client = getClientById(clientId);
-        Cosmetologist cosmetologist = cosmetologistRepository.findById(cosmetologistId)
-                .orElseThrow(() -> new CustomResourceNotFoundException("Cosmetologist", cosmetologistId));
-        client.addCosmetologist(cosmetologist);
-        clientRepository.save(client);
-    }
 
-    @Override
-    public void removeCosmetologist(Long clientId, Long cosmetologistId) throws CustomResourceNotFoundException {
-        Client client = getClientById(clientId);
-        Cosmetologist cosmetologist = cosmetologistRepository.findById(cosmetologistId)
-                .orElseThrow(() -> new CustomResourceNotFoundException("Cosmetologist", cosmetologistId));
-        client.removeCosmetologist(cosmetologist);
-        clientRepository.save(client);
-    }
 
-    @Override
-    public void removeCosmetologistFromClient(Long clientId, Long cosmetologistId) {
-        Client client = clientRepository.findById(clientId)
-                .orElseThrow(() -> new CustomResourceNotFoundException("Client", clientId));
 
-        Cosmetologist cosmetologist = cosmetologistRepository.findById(cosmetologistId)
-                .orElseThrow(() -> new CustomResourceNotFoundException("Cosmetologist", cosmetologistId));
 
-        client.removeCosmetologist(cosmetologist);
-        clientRepository.save(client);
-    }
 
-    @Override
-    public void addCosmetologistToClient(Long clientId, Long cosmetologistId) {
-        Client client = clientRepository.findById(clientId)
-                .orElseThrow(() -> new CustomResourceNotFoundException("Client", clientId));
 
-        Cosmetologist cosmetologist = cosmetologistRepository.findById(cosmetologistId)
-                .orElseThrow(() -> new CustomResourceNotFoundException("Cosmetologist", cosmetologistId));
-
-        client.addCosmetologist(cosmetologist);
-        clientRepository.save(client);
-    }
-
-    @Override
-    public List<Cosmetologist> getCosmetologistsForClient(Long clientId) {
-        Client client = clientRepository.findById(clientId)
-                .orElseThrow(() -> new CustomResourceNotFoundException("Client", clientId));
-
-        return client.getCosmetologists();
-    }
 }

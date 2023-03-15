@@ -1,10 +1,10 @@
 package com.example.project._recactor.model.mappers;
 
-import com.example.project._recactor.controller.service.UserProfileService;
+import com.example.project.user.controller.service.UserProfileService;
 import com.example.project._useless.dto.CosmetologistDTO;
 import com.example.project._recactor.model.entities.Cosmetologist;
 import com.example.project._recactor.model.entities.Procedure;
-
+import com.example.project.user.controller.mapper.UserProfileMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 public class CosmetologistAssembler {
     @Autowired
     private UserProfileService userProfileService;
+    @Autowired
+    private UserProfileMapper userProfileMapper;
 
     public CosmetologistDTO toCosmetologistDTO(Cosmetologist cosmetologist) {
         CosmetologistDTO dto=new CosmetologistDTO();
@@ -28,14 +30,14 @@ public class CosmetologistAssembler {
                 .map(Procedure::getId)
                 .collect(Collectors.toList());
         dto.setProcedureIds(procedureIds);
-        dto.setAvailability(cosmetologist.getAvailability());
+        //dto.setAvailability(cosmetologist.getAvailability());
         return dto;
     }
 
     public Cosmetologist toCosmetologistEntity(CosmetologistDTO dto) {
         Cosmetologist cosmetologist=new Cosmetologist();
         cosmetologist.setId(cosmetologist.getId());
-        cosmetologist.setUserProfile(userProfileService.getUserProfileById(dto.getUserProfileId()));
+        cosmetologist.setUserProfile(userProfileMapper.toEntity(userProfileService.getUserProfileById(dto.getUserProfileId())));
 //        cosmetologist.setSpecialty(dto.getSpecialty());
 //        cosmetologist.setYearsOfExperience(dto.getYearsOfExperience());
         List<Procedure> procedures=new ArrayList<>();
@@ -47,7 +49,7 @@ public class CosmetologistAssembler {
             }
         }
         cosmetologist.setProcedures(procedures);
-        cosmetologist.setAvailability(dto.getAvailability());
+       // cosmetologist.setAvailability(dto.getAvailability());
         return cosmetologist;
     }
 }

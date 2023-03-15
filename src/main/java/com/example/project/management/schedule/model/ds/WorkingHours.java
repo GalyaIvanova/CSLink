@@ -1,17 +1,24 @@
 package com.example.project.management.schedule.model.ds;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 @Embeddable
 public class WorkingHours {
+    @Column(name = "dayOfWeek")
     private DayOfWeek dayOfWeek;
-    private LocalDate day;
+
+    @Column(name = "date")
+    private LocalDate date;
+
+    @Column(name = "startTime")
     private LocalTime startTime;
+
+    @Column(name = "endTime")
     private LocalTime endTime;
     //private List<WorkingHours> availability;
 
@@ -26,7 +33,7 @@ public class WorkingHours {
 
     public WorkingHours(LocalDate day, LocalTime startTime, LocalTime endTime) {
         this.dayOfWeek=day.getDayOfWeek();
-        this.day=day;
+        this.date =day;
         this.startTime=startTime;
         this.endTime=endTime;
     }
@@ -55,12 +62,12 @@ public class WorkingHours {
         this.dayOfWeek=dayOfWeek;
     }
 
-    public void setDay(LocalDate day) {
-        this.day=day;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public LocalDate getDay() {
-        return day;
+    public LocalDate getDate() {
+        return date;
     }
 
 

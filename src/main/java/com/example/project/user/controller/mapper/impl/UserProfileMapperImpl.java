@@ -1,22 +1,17 @@
-package com.example.project._recactor.model.mappers;
+package com.example.project.user.controller.mapper.impl;
 
-import com.example.project._recactor.controller.service.UserService;
+import com.example.project.user.controller.mapper.UserProfileMapper;
 import com.example.project.user.model.dto.UserProfileDTO;
 import com.example.project.user.model.entity.UserProfile;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserProfileAssembler {
-    @Autowired
-    private UserService userService;
-//    @Autowired
-//    private UserAssembler userAssembler;
-
+public class UserProfileMapperImpl implements UserProfileMapper {
+    @Override
     public UserProfileDTO toDtoModel(UserProfile entity) {
         UserProfileDTO userProfileDTO = new UserProfileDTO();
         userProfileDTO.setId(entity.getId());
-        userProfileDTO.setUserId(entity.getUser().getId());
         userProfileDTO.setRole(entity.getRole());
         userProfileDTO.setName(entity.getName());
         userProfileDTO.setPhone(entity.getPhone());
@@ -25,11 +20,10 @@ public class UserProfileAssembler {
         return userProfileDTO;
     }
 
+    @Override
     public UserProfile toEntity(UserProfileDTO dto) {
         UserProfile entity = new UserProfile();
         entity.setId(dto.getId());
-        User user=userService.getUserById(dto.getUserId());
-        entity.setUser(user);
         entity.setRole(dto.getRole());
         entity.setName(dto.getName());
         entity.setPhone(dto.getPhone());

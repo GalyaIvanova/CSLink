@@ -10,7 +10,7 @@ import com.example.project._recactor.model.entities.Cosmetologist;
 import jakarta.persistence.*;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"workingHours"}))
+//@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"workingHours"}))
 public class Availability {
 
     @Id
@@ -22,7 +22,7 @@ public class Availability {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cosmetologist_id")
-    private Cosmetologist cosmetologist;
+    private Cosmetologist cosmetologist_id;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -48,7 +48,7 @@ public class Availability {
     public void scheduledTask() {
         System.out.println("Running scheduled task for entity with ID " + id);
         // TODO: Add your task logic here
-        if (workingHours.getDay().isBefore(LocalDateTime.now().toLocalDate()) ){
+        if (workingHours.getDate().isBefore(LocalDateTime.now().toLocalDate()) ){
            // entityManager.remove(this);
         }
         lastTaskRun = LocalDateTime.now();

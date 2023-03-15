@@ -105,7 +105,7 @@ public class CosmetologistServiceImpl implements CosmetologistService {
     public List<ClientDTO> getClientsForCosmetologist(Long cosmetologistId) {
         List<Client> clients=cosmetologistRepository.getClientsForCosmetologist(cosmetologistId);
         return clients.stream()
-                .map(clientAssembler::toClientDTO)
+                .map(clientAssembler::toDtoModel)
                 .collect(Collectors.toList());
     }
 

@@ -2,10 +2,14 @@ package com.example.project.user.model.entity;
 
 import org.springframework.lang.NonNull;
 
-import com.example.project.user.model.datatypes.ds.Phone;
 import com.example.project.user.model.datatypes.enums.Role;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "user_profile")
@@ -17,20 +21,14 @@ public class UserProfile {
     @NonNull
     private String username;
     private String password;
-    private String tokent;
-
+    private String token;
     private Role role;
-
     private String name;
-
     private String email;
+    private String gender;
 
     @Embedded
     private Phone phone;
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    private User user;
 
     public Long getId() {
         return id;
@@ -89,12 +87,20 @@ public class UserProfile {
         this.password = password;
     }
 
-    public String getTokent() {
-        return tokent;
+    public String getToken() {
+        return token;
     }
 
-    public void setTokent(String tokent) {
-        this.tokent = tokent;
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
 

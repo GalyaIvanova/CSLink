@@ -1,6 +1,6 @@
 package com.example.project._recactor.model.entities;
 
-import com.example.project.user.model.datatypes.ds.Phone;
+import com.example.project.user.model.entity.Phone;
 import com.example.project.user.model.entity.UserProfile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -26,18 +26,18 @@ public class Client {
     @JoinColumn(name = "userProfile_id", referencedColumnName = "id")
     private UserProfile userProfile;
 
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "client_cosmetologist",
-            joinColumns = @JoinColumn(name = "client_id"),
-            inverseJoinColumns = @JoinColumn(name = "cosmetologist_id")
-    )
-    private List<Cosmetologist> cosmetologists = new ArrayList<>();
+//    @JsonIgnore
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "client_cosmetologist",
+//            joinColumns = @JoinColumn(name = "client_id"),
+//            inverseJoinColumns = @JoinColumn(name = "cosmetologist_id")
+//    )
+//    private List<Cosmetologist> cosmetologists = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Transaction> transactions;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+//    private List<Transaction> transactions;
 
     public Long getId() {
         return id;
@@ -63,29 +63,29 @@ public class Client {
         this.userProfile=userProfile;
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
+//    public List<Transaction> getTransactions() {
+//        return transactions;
+//    }
+//
+//    public void setTransactions(List<Transaction> transactions) {
+//        this.transactions = transactions;
+//    }
 
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-    }
-
-    public List<Cosmetologist> getCosmetologists() {
-        return cosmetologists;
-    }
-
-    public void setCosmetologists(List<Cosmetologist> cosmetologists) {
-        this.cosmetologists = cosmetologists;
-    }
-
-    public void addCosmetologist(Cosmetologist cosmetologist) {
-        this.cosmetologists.add(cosmetologist);
-    }
-
-    public void removeCosmetologist(Cosmetologist cosmetologist) {
-        this.cosmetologists.remove(cosmetologist);
-    }
+//    public List<Cosmetologist> getCosmetologists() {
+//        return cosmetologists;
+//    }
+//
+//    public void setCosmetologists(List<Cosmetologist> cosmetologists) {
+//        this.cosmetologists = cosmetologists;
+//    }
+//
+//    public void addCosmetologist(Cosmetologist cosmetologist) {
+//        this.cosmetologists.add(cosmetologist);
+//    }
+//
+//    public void removeCosmetologist(Cosmetologist cosmetologist) {
+//        this.cosmetologists.remove(cosmetologist);
+//    }
 
 //    public Address getAddress() {
 //        return this.address;

@@ -37,21 +37,5 @@ public class ClientController {
         clientService.deleteClientById(id);
     }
 
-    @GetMapping("/{clientId}/cosmetologists")
-    public ResponseEntity<List<Cosmetologist>> getCosmetologistsForClient(@PathVariable Long clientId) {
-        List<Cosmetologist> cosmetologists = clientService.getCosmetologistsForClient(clientId);
-        return ResponseEntity.ok().body(cosmetologists);
-    }
 
-    @PostMapping("/{clientId}/cosmetologists/{cosmetologistId}")
-    public ResponseEntity<Void> addCosmetologistToClient(@PathVariable Long clientId, @PathVariable Long cosmetologistId) {
-        clientService.addCosmetologistToClient(clientId, cosmetologistId);
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping("/{clientId}/cosmetologists/{cosmetologistId}")
-    public ResponseEntity<Void> removeCosmetologistFromClient(@PathVariable Long clientId, @PathVariable Long cosmetologistId) {
-        clientService.removeCosmetologistFromClient(clientId, cosmetologistId);
-        return ResponseEntity.ok().build();
-    }
 }

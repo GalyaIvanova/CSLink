@@ -1,4 +1,4 @@
-package com.example.project.user.model.datatypes.ds;
+package com.example.project.user.model.entity;
 
 import jakarta.persistence.Embeddable;
 import org.springframework.lang.NonNull;
@@ -7,8 +7,6 @@ import org.springframework.lang.NonNull;
 public class Phone {
 
     private String countryCode;
-    private String areaCode;
-
     @NonNull
     private String number;
 
@@ -18,14 +16,6 @@ public class Phone {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
-    }
-
-    public String getAreaCode() {
-        return areaCode;
-    }
-
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
     }
 
     public String getNumber() {

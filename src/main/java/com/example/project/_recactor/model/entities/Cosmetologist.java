@@ -37,9 +37,9 @@ public class Cosmetologist {
             inverseJoinColumns=@JoinColumn(name="client_id"))
     private List<Client> clients;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="cosmetologist", cascade=CascadeType.ALL)
-    private List<Transaction> transactions;
+//    @JsonIgnore
+//    @OneToMany(mappedBy="cosmetologist", cascade=CascadeType.ALL)
+//    private List<Transaction> transactions;
 
     public Long getId() {
         return id;
@@ -89,13 +89,13 @@ public class Cosmetologist {
         this.clients.removeIf(c -> Objects.equals(clientId, c.getId()));
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions=transactions;
-    }
+//    public List<Transaction> getTransactions() {
+//        return transactions;
+//    }
+//
+//    public void setTransactions(List<Transaction> transactions) {
+//        this.transactions=transactions;
+//    }
 
     public String getPhoneNumber() {
         return this.userProfile.getPhone().getNumber();

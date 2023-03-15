@@ -5,7 +5,7 @@ import java.util.List;
 public class ClientDTO {
     private Long id;
     private Long userProfileId;
-    private Address address;
+
     private List<Long> cosmetologistIds;
 
     public ClientDTO() {
@@ -36,12 +36,6 @@ public class ClientDTO {
         this.userProfileId = userProfileId;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
-    public Address getAddress() {
-        return address;
-    }
 }
 
